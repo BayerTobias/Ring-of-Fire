@@ -8,7 +8,8 @@ import { Game } from '../classes/game.class';
 })
 export class GameComponent {
   takeCardAnimation = false;
-  game: object = [];
+  currentCard: string = '';
+  game!: Game;
 
   constructor() {}
 
@@ -17,11 +18,19 @@ export class GameComponent {
   }
 
   takeCard() {
-    this.takeCardAnimation = true;
+    if (!this.takeCardAnimation) {
+      if (this.game.stack.length > 0) {
+        this.currentCard = this.game.stack.pop() as string;
+        this.takeCardAnimation = true;
+
+        setTimeout(() => {
+          this.takeCardAnimation = false;
+        }, 1700);
+      } else console.log('Game Over');
+    }
   }
 
   newGame() {
     this.game = new Game();
-    console.log(this.game);
   }
 }
