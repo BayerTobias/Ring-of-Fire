@@ -3,6 +3,7 @@
   [ngStyle]="{ 'top.px': 100 + i * 80 }"
   class="player-component"
   [name]="player"
+  [playerActive]="i === game.currentPlayer"
 ></app-player>
 
 <div class="game-board">
@@ -34,4 +35,10 @@
       alt="ace"
     />
   </div>
+
+  <button (click)="openDialog()" mat-fab color="primary" class="btn-add">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <app-dare-card [card]="currentCard" class="dare-card"></app-dare-card>
 </div>
