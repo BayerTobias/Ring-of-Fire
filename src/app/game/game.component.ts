@@ -24,6 +24,7 @@ export class GameComponent {
         this.takeCardAnimation = true;
 
         setTimeout(() => {
+          this.game.playedCards.push(this.currentCard);
           this.takeCardAnimation = false;
         }, 1700);
       } else console.log('Game Over');
