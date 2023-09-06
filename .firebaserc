@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tbdevakademyringoffire": {
+      "hosting": {
+        "ring_of_fire": [
+          "tbdevakademyringoffire"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tbdevakademyringoffire"
+  }
+}
