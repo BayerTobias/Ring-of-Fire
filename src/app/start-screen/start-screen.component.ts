@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Game } from '../classes/game.class';
+import { async } from 'rxjs';
 
 @Component({
   selector: 'app-start-screen',
@@ -7,10 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./start-screen.component.scss'],
 })
 export class StartScreenComponent {
+  firestore: Firestore = inject(Firestore);
+
   constructor(private router: Router) {}
-  newGame() {
-    //start game
-    console.log('new Game');
-    this.router.navigateByUrl('/game');
+  async newGame() {
+    const game = new Game();
+    await addDoc(collection(this.firestore, 'games'), game.toJson())
+      .catch((err) => {
+        console.error(err);
+      })
+      .then((docRef: any) => {
+        console.log('Document written with ID', docRef.id);
+        this.router.navigateByUrl('/game/' + docRef.id);
+      });
   }
 }
