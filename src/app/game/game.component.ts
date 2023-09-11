@@ -20,10 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 export class GameComponent {
   firestore: Firestore = inject(Firestore);
 
-  takeCardAnimation = false;
-  currentCard: string = '';
   game!: Game;
-
   gameId!: string;
 
   unsubGames;
@@ -35,7 +32,6 @@ export class GameComponent {
 
   ngOnInit() {
     this.newGame();
-    // this.uploadNewGame(this.game.toJson());
   }
 
   setGameId() {
@@ -56,6 +52,8 @@ export class GameComponent {
       this.game.players = gamedata.players;
       this.game.playedCards = gamedata.playedCards;
       this.game.stack = gamedata.stack;
+      this.game.currentCard = gamedata.currentCard;
+      this.game.takeCardAnimation = gamedata.takeCardAnimation;
 
       console.log('game is ', gamedata);
     });
@@ -89,15 +87,17 @@ export class GameComponent {
   }
 
   takeCard() {
-    if (!this.takeCardAnimation) {
+    if (!this.game.takeCardAnimation) {
       if (this.game.stack.length > 0) {
-        this.currentCard = this.game.stack.pop() as string;
-        this.takeCardAnimation = true;
+        this.game.currentCard = this.game.stack.pop() as string;
+        this.game.takeCardAnimation = true;
         this.nextPlayer();
+        this.updateGame();
 
         setTimeout(() => {
-          this.game.playedCards.push(this.currentCard);
-          this.takeCardAnimation = false;
+          this.game.playedCards.push(this.game.currentCard);
+          this.game.takeCardAnimation = false;
+          this.updateGame();
         }, 1700);
       } else console.log('Game Over');
     }

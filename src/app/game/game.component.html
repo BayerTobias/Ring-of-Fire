@@ -11,7 +11,7 @@
     <img
       [ngStyle]="{ 'right.px': i * 5 }"
       *ngFor="let c of [0, 1, 2, 3]; let i = index"
-      src="./../../assets/img/card_cover.png"
+      src="./../../assets/img/cards/card_cover.png"
       alt="card"
     />
     <img
@@ -28,9 +28,9 @@
       alt=""
     />
     <img
-      src="../../assets/img/cards/{{ currentCard }}.png"
+      src="../../assets/img/cards/{{ game.currentCard }}.png"
       style="right: 20px"
-      *ngIf="takeCardAnimation"
+      *ngIf="game.takeCardAnimation"
       class="take-card"
       alt="ace"
     />
@@ -40,5 +40,5 @@
     <mat-icon>add</mat-icon>
   </button>
 
-  <app-dare-card [card]="currentCard" class="dare-card"></app-dare-card>
+  <app-dare-card [card]="game.currentCard" class="dare-card"></app-dare-card>
 </div>
