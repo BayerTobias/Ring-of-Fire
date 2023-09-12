@@ -11,6 +11,7 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { DialogEditPlayerComponent } from '../dialog-edit-player/dialog-edit-player.component';
 
 @Component({
   selector: 'app-game',
@@ -115,6 +116,16 @@ export class GameComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
+
+    dialogRef.afterClosed().subscribe((name: string) => {
+      if (name) this.game.players.push(name);
+      this.updateGame();
+    });
+  }
+
+  openEditDialog(index: number): void {
+    const dialogRef = this.dialog.open(DialogEditPlayerComponent);
+    console.log(index);
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name) this.game.players.push(name);

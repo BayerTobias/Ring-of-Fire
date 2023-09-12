@@ -13,6 +13,7 @@ export class StartScreenComponent {
   firestore: Firestore = inject(Firestore);
 
   constructor(private router: Router) {}
+
   async newGame() {
     const game = new Game();
     await addDoc(collection(this.firestore, 'games'), game.toJson())
