@@ -3,6 +3,7 @@
     *ngFor="let player of game.players; let i = index"
     class="player-component"
     [name]="player"
+    [image]="game.playerImages[i]"
     [playerActive]="i === game.currentPlayer"
     (click)="openEditDialog(i)"
   ></app-player>

@@ -51,6 +51,7 @@ export class GameComponent {
 
       this.game.currentPlayer = gamedata.currentPlayer;
       this.game.players = gamedata.players;
+      this.game.playerImages = gamedata.playerImages;
       this.game.playedCards = gamedata.playedCards;
       this.game.stack = gamedata.stack;
       this.game.currentCard = gamedata.currentCard;
@@ -118,18 +119,29 @@ export class GameComponent {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
-      if (name) this.game.players.push(name);
+      if (name) {
+        this.game.players.push(name);
+        this.game.playerImages.push('1.png');
+      }
       this.updateGame();
     });
   }
 
   openEditDialog(index: number): void {
     const dialogRef = this.dialog.open(DialogEditPlayerComponent);
-    console.log(index);
 
-    dialogRef.afterClosed().subscribe((name: string) => {
-      if (name) this.game.players.push(name);
-      this.updateGame();
+    dialogRef.afterClosed().subscribe((change: string) => {
+      if (change) {
+        if (change === 'DELETE') {
+          this.deletePlayer(index);
+        } else this.game.playerImages[index] = change;
+        this.updateGame();
+      }
     });
+  }
+
+  deletePlayer(index: number): void {
+    this.game.players.splice(index, 1);
+    this.game.playerImages.splice(index, 1);
   }
 }
