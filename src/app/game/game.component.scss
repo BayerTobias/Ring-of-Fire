@@ -58,6 +58,14 @@
   max-width: 500px;
 }
 
+.warning-card {
+  position: absolute;
+}
+
+.no-curser-events {
+  pointer-events: none;
+}
+
 @keyframes take-card-animation {
   0% {
     transform: scale(1);

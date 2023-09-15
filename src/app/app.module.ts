@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { DialogEditPlayerComponent } from './dialog-edit-player/dialog-edit-player.component';
+import { WarningDialogCardComponent } from './warning-dialog-card/warning-dialog-card.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DialogEditPlayerComponent } from './dialog-edit-player/dialog-edit-play
     DialogAddPlayerComponent,
     DareCardComponent,
     DialogEditPlayerComponent,
+    WarningDialogCardComponent,
   ],
   imports: [
     MatDialogModule,
