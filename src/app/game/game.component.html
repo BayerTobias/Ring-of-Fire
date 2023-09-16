@@ -10,20 +10,26 @@
 </div>
 <div class="game-board">
   <div class="card-stack">
-    <img
-      [ngStyle]="{ 'right.px': i * 5 }"
-      *ngFor="let c of [0, 1, 2, 3]; let i = index"
-      src="./../../assets/img/cards/card_cover.png"
-      alt="card"
-    />
-    <img
-      (click)="takeCard()"
-      [ngClass]="{ 'no-curser-events': game.players.length < 2 }"
-      class="top-card"
-      style="right: 20px"
-      src="./../../assets/img/cards/card_cover.png"
-      alt="card"
-    />
+    <div *ngIf="!game.gameOver">
+      <img
+        [ngStyle]="{ 'right.px': i * 5 }"
+        *ngFor="let c of [0, 1, 2, 3]; let i = index"
+        src="./../../assets/img/cards/card_cover.png"
+        alt="card"
+      />
+    </div>
+    <div *ngIf="!game.gameOver">
+      <img
+        (click)="takeCard()"
+        [ngClass]="{
+          'no-curser-events': game.players.length < 2 || game.gameOver
+        }"
+        class="top-card"
+        style="right: 20px"
+        src="./../../assets/img/cards/card_cover.png"
+        alt="card"
+      />
+    </div>
     <img
       class="played-card"
       *ngFor="let card of game.playedCards"
@@ -50,10 +56,18 @@
     </button>
   </div>
 
-  <app-dare-card [card]="game.currentCard" class="dare-card"></app-dare-card>
+  <app-dare-card
+    *ngIf="game.players.length >= 2"
+    [card]="game.currentCard"
+    class="dare-card"
+  ></app-dare-card>
 
   <app-warning-dialog-card
-    *ngIf="game.players.length < 2"
+    [gameOver]="game.gameOver"
+    (restartGameClicked)="restartGame()"
+    *ngIf="
+      (game.gameOver && !game.takeCardAnimation) || game.players.length < 2
+    "
     class="warning-card"
   ></app-warning-dialog-card>
 </div>

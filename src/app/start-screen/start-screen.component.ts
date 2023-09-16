@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Game } from '../classes/game.class';
-import { async } from 'rxjs';
 
 @Component({
   selector: 'app-start-screen',

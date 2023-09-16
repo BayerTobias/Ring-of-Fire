@@ -1,6 +1,15 @@
 <mat-card>
   <mat-card-content
-    ><mat-card-title>Please add more players </mat-card-title>Add at least 2
-    players to play the game</mat-card-content
+    ><mat-card-title>{{
+      gameOver ? "Game Over" : "Please add more players"
+    }}</mat-card-title
+    >{{
+      gameOver
+        ? "Thanks for playing!"
+        : "Add at least 2 players to play the game"
+    }}
+    <div *ngIf="gameOver" mat-dialog-actions>
+      <button (click)="handleRestartGame()" mat-button>Restart game</button>
+    </div></mat-card-content
   >
 </mat-card>

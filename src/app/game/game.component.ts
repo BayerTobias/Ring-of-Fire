@@ -56,6 +56,7 @@ export class GameComponent {
       this.game.stack = gamedata.stack;
       this.game.currentCard = gamedata.currentCard;
       this.game.takeCardAnimation = gamedata.takeCardAnimation;
+      this.game.gameOver = gamedata.gameOver;
 
       console.log('game is ', gamedata);
     });
@@ -93,6 +94,7 @@ export class GameComponent {
       if (this.game.stack.length > 0) {
         this.game.currentCard = this.game.stack.pop() as string;
         this.game.takeCardAnimation = true;
+        if (this.game.stack.length == 0) this.game.gameOver = true;
         this.nextPlayer();
         this.updateGame();
 
@@ -101,7 +103,9 @@ export class GameComponent {
           this.game.takeCardAnimation = false;
           this.updateGame();
         }, 1700);
-      } else console.log('Game Over');
+      } else {
+        console.warn('error');
+      }
     }
   }
 
@@ -113,6 +117,15 @@ export class GameComponent {
 
   newGame() {
     this.game = new Game();
+  }
+
+  restartGame() {
+    this.game.stack = [];
+    this.game.fillStack();
+    this.game.playedCards = [];
+    this.game.currentCard = '';
+    this.game.gameOver = false;
+    this.updateGame();
   }
 
   openDialog(): void {
