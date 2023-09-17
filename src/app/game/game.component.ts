@@ -23,6 +23,7 @@ export class GameComponent {
 
   game!: Game;
   gameId!: string;
+  playerOverview: boolean = false;
 
   unsubGames;
 
@@ -156,5 +157,9 @@ export class GameComponent {
   deletePlayer(index: number): void {
     this.game.players.splice(index, 1);
     this.game.playerImages.splice(index, 1);
+  }
+
+  togglePlayerOverview() {
+    this.playerOverview = !this.playerOverview;
   }
 }

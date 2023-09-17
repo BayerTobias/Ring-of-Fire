@@ -1,14 +1,54 @@
-<div class="player-frame">
-  <app-player
-    *ngFor="let player of game.players; let i = index"
-    class="player-component"
-    [name]="player"
-    [image]="game.playerImages[i]"
-    [playerActive]="i === game.currentPlayer"
-    (click)="openEditDialog(i)"
-  ></app-player>
-</div>
 <div class="game-board">
+  <div *ngIf="game.players.length > 0" class="player-frame">
+    <button
+      *ngIf="game.players.length >= 2"
+      (click)="openDialog()"
+      mat-fab
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="hide-mobile">
+      <app-player
+        *ngFor="let player of game.players; let i = index"
+        class="player-component"
+        [name]="player"
+        [image]="game.playerImages[i]"
+        [playerActive]="i === game.currentPlayer"
+        (click)="openEditDialog(i)"
+      ></app-player>
+    </div>
+    <div class="hide-desktop">
+      <ng-container *ngFor="let player of game.players; let i = index">
+        <app-player
+          [name]="player"
+          [image]="game.playerImages[i]"
+          *ngIf="i === game.currentPlayer"
+          [playerActive]="i === game.currentPlayer"
+          (click)="openEditDialog(i)"
+        ></app-player>
+      </ng-container>
+      <button
+        (click)="togglePlayerOverview()"
+        class="all-players-btn"
+        mat-raised-button
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-player-overview" *ngIf="playerOverview">
+    <app-player
+      *ngFor="let player of game.players; let i = index"
+      class="player-component"
+      [name]="player"
+      [image]="game.playerImages[i]"
+      [playerActive]="i === game.currentPlayer"
+      (click)="openEditDialog(i)"
+    ></app-player>
+  </div>
+
   <div class="card-stack">
     <div *ngIf="!game.gameOver">
       <img
@@ -46,14 +86,11 @@
   </div>
 
   <div class="btn-add">
-    <img
+    <!-- <img
       *ngIf="game.players.length < 2"
       src="../../assets/img/Arrow-Down-Red.svg"
       alt=""
-    />
-    <button (click)="openDialog()" mat-fab color="primary">
-      <mat-icon>add</mat-icon>
-    </button>
+    /> -->
   </div>
 
   <app-dare-card
@@ -62,12 +99,21 @@
     class="dare-card"
   ></app-dare-card>
 
-  <app-warning-dialog-card
-    [gameOver]="game.gameOver"
-    (restartGameClicked)="restartGame()"
-    *ngIf="
-      (game.gameOver && !game.takeCardAnimation) || game.players.length < 2
-    "
-    class="warning-card"
-  ></app-warning-dialog-card>
+  <div class="warning-dialog-wrapper">
+    <app-warning-dialog-card
+      [gameOver]="game.gameOver"
+      (restartGameClicked)="restartGame()"
+      *ngIf="
+        (game.gameOver && !game.takeCardAnimation) || game.players.length < 2
+      "
+    ></app-warning-dialog-card>
+    <button
+      *ngIf="game.players.length < 2"
+      (click)="openDialog()"
+      mat-fab
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>

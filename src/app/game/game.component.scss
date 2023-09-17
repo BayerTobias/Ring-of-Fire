@@ -20,16 +20,54 @@
 
 .player-frame {
   position: absolute;
-  top: 8px;
   right: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
+  max-height: 80vh;
+
+  > div {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  @media screen and (max-width: 800px) {
+    bottom: 8px;
+    left: 8px;
+    top: unset;
+    flex-direction: row;
+    > div {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}
+
+.mobile-player-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  bottom: 76px;
+  right: 0;
+  max-height: 85vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.all-players-btn {
+  height: 60px;
 }
 
 .played-card {
   right: 20px;
   transform: scale(1) translateX(150px) translateY(-200px) rotate(340deg);
+  @media screen and (max-width: 420px) {
+    transform: scale(1) translateX(150px) translateY(-100px) rotate(-20deg);
+  }
 }
 
 .top-card {
@@ -46,28 +84,43 @@
   transform: scale(1) translateX(150px) translateY(-200px) rotate(340deg);
   @media screen and (max-width: 420px) {
     animation: mobile-card-animation 1.5s ease;
+    transform: scale(1) translateX(150px) translateY(-100px) rotate(-20deg);
   }
 }
 
 .btn-add {
   position: absolute;
-  bottom: 32px;
-  right: 32px;
+  right: 500px;
 }
 
 .dare-card {
   position: absolute;
-  bottom: 36px;
-  left: 36px;
+  top: 80px;
+
   max-width: 500px;
 }
 
-.warning-card {
+.warning-dialog-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   position: absolute;
 }
 
 .no-curser-events {
   pointer-events: none;
+}
+
+.hide-mobile {
+  @media screen and (max-width: 800px) {
+    display: none !important;
+  }
+}
+
+.hide-desktop {
+  @media screen and (min-width: 801px) {
+    display: none !important;
+  }
 }
 
 @keyframes take-card-animation {
@@ -94,6 +147,6 @@
   }
 
   100% {
-    transform: scale(1) translateX(100px) translateY(-100px) rotate(-20deg);
+    transform: scale(1) translateX(150px) translateY(-100px) rotate(-20deg);
   }
 }
