@@ -74,6 +74,9 @@ export class DareCardComponent {
 
   @Input() card!: string;
 
+  /**
+   * Updates component properties when 'card' input changes.
+   */
   ngOnChanges(): void {
     if (this.card) {
       const cardNumber = +this.card.split('_')[1];

@@ -14,6 +14,9 @@ export class DialogAddPlayerComponent {
     public dialogRef: MatDialogRef<DialogAddPlayerComponent>
   ) {}
 
+  /**
+   * Closes the dialog without taking any further action.
+   */
   onNoClick(): void {
     this.dialogRef.close();
   }

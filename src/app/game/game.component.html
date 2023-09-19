@@ -85,14 +85,6 @@
     />
   </div>
 
-  <div class="btn-add">
-    <!-- <img
-      *ngIf="game.players.length < 2"
-      src="../../assets/img/Arrow-Down-Red.svg"
-      alt=""
-    /> -->
-  </div>
-
   <app-dare-card
     *ngIf="game.players.length >= 2"
     [card]="game.currentCard"
@@ -107,6 +99,7 @@
         (game.gameOver && !game.takeCardAnimation) || game.players.length < 2
       "
     ></app-warning-dialog-card>
+
     <button
       *ngIf="game.players.length < 2"
       (click)="openDialog()"
@@ -115,5 +108,9 @@
     >
       <mat-icon>add</mat-icon>
     </button>
+  </div>
+
+  <div class="flip-phone-overlay">
+    <img src="../../assets/img/flip_phone.svg" alt="" />
   </div>
 </div>

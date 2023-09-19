@@ -9,6 +9,9 @@ export class WarningDialogCardComponent {
   @Input() gameOver!: boolean;
   @Output() restartGameClicked = new EventEmitter<void>();
 
+  /**
+   * Emits an event to signal that the restart game action was triggered.
+   */
   handleRestartGame() {
     this.restartGameClicked.emit();
   }

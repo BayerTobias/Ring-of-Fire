@@ -13,6 +13,9 @@ export class StartScreenComponent {
 
   constructor(private router: Router) {}
 
+  /**
+   * Creates a new game instance, adds it to Firestore, and navigates to the game's URL.
+   */
   async newGame() {
     const game = new Game();
     await addDoc(collection(this.firestore, 'games'), game.toJson())

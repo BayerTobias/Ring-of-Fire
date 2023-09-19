@@ -5,7 +5,7 @@ section {
   justify-content: space-evenly;
   align-items: center;
   height: 100vh;
-  background-color: rgb(6, 5, 5);
+  background-color: rgba(5, 4, 5, 1);
   > img {
     height: 50vh;
     border-radius: 50%;
@@ -38,7 +38,7 @@ button {
   height: 66px;
   padding: 20px, 0px, 20px, 0px;
   border-radius: 8px;
-  background: linear-gradient(0deg, #1e1e1e, #1e1e1e);
+  background: rgb(30, 30, 30);
   cursor: pointer;
   border: unset;
   &:hover {
