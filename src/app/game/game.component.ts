@@ -30,8 +30,6 @@ export class GameComponent {
     'playing_cards_02.wav',
     'playing_cards_03.wav',
     'playing_cards_04.wav',
-    'playing_cards_05.wav',
-    'playing_cards_06.wav',
   ];
 
   unsubGames;
@@ -249,9 +247,7 @@ export class GameComponent {
    */
   playRandomAudio() {
     const audioIndex = Math.floor(Math.random() * this.audioArray.length);
-    const audio = new Audio(
-      '../../assets/audio/' + this.audioArray[audioIndex]
-    );
+    const audio = new Audio('./assets/audio/' + this.audioArray[audioIndex]);
     audio.play();
   }
 }

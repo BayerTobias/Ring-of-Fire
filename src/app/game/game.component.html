@@ -54,7 +54,7 @@
       <img
         [ngStyle]="{ 'right.px': i * 5 }"
         *ngFor="let c of [0, 1, 2, 3]; let i = index"
-        src="./../../assets/img/cards/card_cover.png"
+        src="./assets/img/cards/card_cover.png"
         alt="card"
       />
     </div>
@@ -66,18 +66,18 @@
         }"
         class="top-card"
         style="right: 20px"
-        src="./../../assets/img/cards/card_cover.png"
+        src="./assets/img/cards/card_cover.png"
         alt="card"
       />
     </div>
     <img
       class="played-card"
       *ngFor="let card of game.playedCards"
-      src="../../assets/img/cards/{{ card }}.png"
+      src="./assets/img/cards/{{ card }}.png"
       alt=""
     />
     <img
-      src="../../assets/img/cards/{{ game.currentCard }}.png"
+      src="./assets/img/cards/{{ game.currentCard }}.png"
       style="right: 20px"
       *ngIf="game.takeCardAnimation"
       class="take-card"
@@ -111,6 +111,6 @@
   </div>
 
   <div class="flip-phone-overlay">
-    <img src="../../assets/img/flip_phone.svg" alt="" />
+    <img src="./assets/img/flip_phone.svg" alt="" />
   </div>
 </div>

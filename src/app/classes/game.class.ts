@@ -25,8 +25,11 @@ export class Game {
     };
   }
 
+  /**
+   * Fills the game stack with a standard deck of cards, shuffles it, and prepares it for gameplay.
+   */
   fillStack() {
-    for (let i = 1; i < 3; /*14*/ i++) {
+    for (let i = 1; i < 14; i++) {
       this.stack.push('spade_' + i);
       this.stack.push('hearts_' + i);
       this.stack.push('clubs_' + i);
@@ -35,6 +38,11 @@ export class Game {
     this.shuffle(this.stack);
   }
 
+  /**
+   * Shuffles the elements in an array using the Fisher-Yates shuffle algorithm.
+   * @param {string[]} array - The array to be shuffled.
+   * @returns {string[]} - The shuffled array.
+   */
   shuffle(array: string[]) {
     let currentIndex = array.length,
       randomIndex;
@@ -46,7 +54,6 @@ export class Game {
         array[currentIndex],
       ];
     }
-
     return array;
   }
 }
