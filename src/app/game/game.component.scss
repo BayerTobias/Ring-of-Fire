@@ -80,6 +80,7 @@
 .played-card {
   right: 20px;
   transform: scale(1) translateX(150px) translateY(-200px) rotate(340deg);
+
   @media screen and (max-width: 420px) {
     transform: scale(1) translateX(150px) translateY(-100px) rotate(-20deg);
   }
@@ -97,9 +98,22 @@
   z-index: 100;
   animation: take-card-animation 1.5s ease;
   transform: scale(1) translateX(150px) translateY(-200px) rotate(340deg);
-  @media screen and (max-width: 420px) {
-    animation: mobile-card-animation 1.5s ease;
-    transform: scale(1) translateX(150px) translateY(-100px) rotate(-20deg);
+}
+
+.mobile-card {
+  z-index: 100;
+  animation: mobile-card-animation 1.5s ease;
+  transform: scale(1) translateX(150px) translateY(-100px) rotate(-20deg);
+  display: none;
+}
+
+@media screen and (max-width: 420px) {
+  .take-card {
+    display: none;
+  }
+
+  .mobile-card {
+    display: block;
   }
 }
 

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+
 import { Game } from '../classes/game.class';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';

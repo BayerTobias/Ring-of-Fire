@@ -83,6 +83,13 @@
       class="take-card"
       alt="ace"
     />
+    <img
+      src="./assets/img/cards/{{ game.currentCard }}.png"
+      style="right: 20px"
+      *ngIf="game.takeCardAnimation"
+      class="mobile-card"
+      alt="ace"
+    />
   </div>
 
   <app-dare-card
